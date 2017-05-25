@@ -60,6 +60,31 @@ let exportedMethods = {
             });
         });
     },
+    updateTaskPartial(id, updatedInfo) {
+        return tasks().then((taskCollection) => {
+            let updateTaskInfo = {}
+            
+            if(updatedInfo.title) {
+                updateTaskInfo.title = updatedInfo.title
+            }
+            if(updatedInfo.description) {
+                updateTaskInfo.description = updatedInfo.description
+            }
+            if(updatedInfo.hoursEstimated) {
+                updateTaskInfo.hoursEstimated = updatedInfo.hoursEstimated
+            }
+            if(updatedInfo.completed) {
+                updateTaskInfo.completed = updatedInfo.completed
+            }
+
+            let updateCommand = {
+                $set: updateTaskInfo
+            };
+            return taskCollection.updateOne({_id: id}, updateCommand).then(() => {
+                return this.getTaskById(id);
+            });
+        });
+    },
     addCommentToTask(id, newComment) {
         return tasks().then((taskCollection) => {
             let commentInfo = {

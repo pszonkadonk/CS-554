@@ -91,6 +91,26 @@ router.put('/:id', (req, res) => {
     });
 });
 
+router.patch('/:id', (req, res) => {
+    let taskInfo = req.body;
+
+    if(!taskInfo) {
+        res.status(400).json({error: "Must provide update data"});
+    }
+
+    if(taskInfo.comments) {
+        res.status(400).json({error: "Cannot update comments in this manner"});
+    }
+
+    taskData.updateTaskPartial(req.params.id, taskInfo).then((updatedTask) => {
+        res.json(updatedTask);
+    }, (err) => {
+        res.status(500).json({error: err});
+    }).catch(() => {
+        res.status(404).json({error: "Task not found"});
+    });
+});
+
 router.post('/:id/comments', (req, res) => {
     let targetTaskId = req.params.id;
     let newComment = req.body;
