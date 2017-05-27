@@ -6,6 +6,28 @@ const taskData = data.tasks;
 
 router.get('/', (req, res) => {
     taskData.getAllTasks().then((taskList) => {
+        let take = req.query.take ? req.query.take : 20;
+        let skip = req.query.skip ? req.query.skip : 0;
+
+        if(isNaN(take)) {
+            res.status(500).json({error: "Take must be a number"});
+            return;
+        }
+
+        if(parseInt(take) < 0 || parseInt(take) > 100) {
+            take = 20;
+        }
+
+        if(isNaN(skip)) {
+            res.status(500).json({error: "Skip must be a number"});
+            return;
+        }        
+
+        if(parseInt(skip) > taskList.length || parseInt(skip) < 0) {
+            skip = 0;
+        }
+
+        taskList = taskList.slice(skip, take);
         res.send(taskList);
     })
 });
@@ -41,14 +63,9 @@ router.post('/', (req, res) => {
         res.status(400).json({error: "You must provide if a task is completed!"});
         return;
     }
-    if(!taskInfo.comments) {
-        res.status(400).json({error: "You must provide task comments!"});
-        return;
-    }
 
     taskData.addTask(taskInfo.title, taskInfo.description, 
-                    taskInfo.hoursEstimated, taskInfo.completed,
-                    taskInfo.comments).then((task) => {
+                    taskInfo.hoursEstimated, taskInfo.completed).then((task) => {
                         res.json(task);
                     },(err) => {
                         res.status(500).send(err);

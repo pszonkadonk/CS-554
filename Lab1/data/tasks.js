@@ -25,7 +25,7 @@ let exportedMethods = {
             })
         })
     },
-    addTask(title, description, hoursEstimated, completed, comments) {
+    addTask(title, description, hoursEstimated, completed) {
         return tasks().then((taskCollection) => {
             let newTask = {
                 _id: uuid.v4(),
@@ -33,7 +33,7 @@ let exportedMethods = {
                 description: description,
                 hoursEstimated: hoursEstimated,
                 completed: completed,
-                comments: comments
+                comments: []
             };
 
             return taskCollection.insertOne(newTask).then((newInsertedInfo) => {
