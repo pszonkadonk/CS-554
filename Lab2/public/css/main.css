@@ -1,0 +1,49 @@
+/*NAVIGATION STYLING*/
+
+.navbar ul {
+    list-style: none;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    color: purple;
+    font-weight: bold;
+}
+
+.navbar ul li a {
+    color: #007b7b
+}
+
+.navbar {
+    background-color: #faf0e6 ;
+}
+
+
+/*ARTICLE STYLING*/
+
+img {
+    width: 395px;
+    height: 250px;
+}
+
+.content-container {
+    max-width: 800px;
+}
+
+@media(min-width: 500px) {
+    .navbar {
+        width: 25%;
+        float: left;
+        background-color: red;
+    }
+    .content-container {
+        width: 50%;
+        float: left;
+        background-color: blue;
+        display: flex;
+        flex-direction: row;
+    }
+}
