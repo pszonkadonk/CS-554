@@ -19,7 +19,6 @@
 
 .navbar {
     background-color: #faf0e6 ;
-    float: left;
 }
 
 
@@ -31,38 +30,25 @@ img {
 }
 
 .content-container {
-    display: flex;
-    flex-wrap: wrap;
     max-width: 800px;
-}
-
-
-@media(max-width: 500) {
-    .flex-item {
-        flex-grow: 1;
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
 }
 
 @media(min-width: 500px) {
     .navbar {
-        width: 25%;        /*background-color: red;*/
+        width: 25%;
+        float: left;
+        /*background-color: red;*/
     }
     .content-container {
         width: 50%;
+        float: left;
         /*background-color: blue;*/
+        display: flex;
+        flex-wrap: wrap;
     }
     .flex-item {
         flex-grow: 1;
         width: 50%;
+        margin-top: 15%;
     }
-    .flex-item {
-        margin-bottom: 25%;
-    
 }
-/*
-@media(min-width: 501px) and (max-width: 800px) {
-
-}*/
