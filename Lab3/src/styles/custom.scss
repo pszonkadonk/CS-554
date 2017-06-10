@@ -1,0 +1,36 @@
+@import "variables";
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    background: $body-background;
+    color: $brand-primary;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    font-size: $primary-font-size;
+    background-clip: border-box;
+}
+
+body {
+    height: 100%;
+}
+
+img {
+    height: 45%;
+    @media(max-width: 768px) {
+        & {
+            width: 55%;
+        }
+    }
+}
+
+.navigation-bar {
+    width: 100%;
+    @media(min-width: 768px) {
+        & {
+            float: left;
+            width: 15%;
+        }
+    }
+}
