@@ -5041,11 +5041,18 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   box-sizing: border-box; }
 
 body, html {
-  background: #FEFEFE;
+  background: #FEDCD2;
   color: #333;
-  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14pt;
   background-clip: border-box; }
+
+.navbar-brand {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.3rem; }
+
+.navbar .navbar-brand {
+  color: goldenrod; }
 
 body {
   height: 100%; }
@@ -5056,13 +5063,24 @@ img {
     img {
       width: 55%; } }
 
-@media (max-width: 768px) {
-  .card-img-top {
-    width: 55%; } }
-
 .navigation-bar {
-  width: 100%; }
+  width: 100%;
+  margin-right: 20px;
+  background-color: #8a3900; }
   @media (min-width: 768px) {
     .navigation-bar {
       float: left;
       width: 15%; } }
+
+.nav-item a {
+  color: #87ceeb; }
+
+.card {
+  background-color: #BFD8D2;
+  color: #36454f; }
+
+.card-title {
+  font-size: 2rem; }
+
+.btn-secondary:hover {
+  background-color: #FEDCD2; }
