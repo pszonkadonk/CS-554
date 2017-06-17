@@ -13,6 +13,73 @@ var AppComponent = function AppComponent() {
 };
 "use strict";
 
+var ContactDetails = function ContactDetails(_ref) {
+    var person = _ref.person;
+
+    return React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            person.first_name
+        ),
+        React.createElement(
+            "ul",
+            { className: "list-group list-group-flush" },
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "Email: ",
+                person.email
+            ),
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "Gender: ",
+                person.gender
+            ),
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "Language: ",
+                person.language
+            ),
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "Car: ",
+                person.car
+            ),
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "Undergraduate: ",
+                person.undergrad
+            ),
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "Graduate: ",
+                person.graduate
+            ),
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "PHD: ",
+                person.phd
+            ),
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "Avatar: ",
+                person.avatar
+            )
+        )
+    );
+};
+"use strict";
+
 var ContactListContainer = React.createClass({
     displayName: "ContactListContainer",
     getInitialState: function getInitialState() {
@@ -61,7 +128,7 @@ var ContactListContainer = React.createClass({
             this.setState({ error: "No comment provided" });
             return;
         }
-        var contactList = this.state.contats;
+        var contactList = this.state.contatcs;
 
         this.addContact(newContact).then(function (newContactObject) {
             _this2.setState({
@@ -75,51 +142,110 @@ var ContactListContainer = React.createClass({
         return React.createElement(
             "div",
             null,
-            React.createElement(ContactList, { contacts: this.state.contacts })
+            this.state.contacts.map(function (info) {
+                return React.createElement(ContactContainer, { contactInfo: info });
+            })
         );
     }
 });
-"use strict";
-
 // const ContactList = ({ contacts }) => {
+
 //     return (
-//         <ul className="list-unstyled">
-//             {contacts.map(contactData => 
-//                 <li>[{contactData.first_name}] : {contactData.last_name}</li>
-//             )}
-//         </ul>
-//     );
-// };
+//         <div>
+//             {contacts.map((info) => {
+//                 return <ContactContainer contactInfo={info} />
+//             })}
+//         </div>
 
-var ContactList = function ContactList(_ref) {
-    var contacts = _ref.contacts;
+//     )
+
+// }
 
 
-    return React.createElement(
-        "div",
-        null,
-        contacts.map(function (info) {
-            return React.createElement(ContactContainer, { contactInfo: info });
-        })
-    );
-};
+// const ContactList = React.createClass({
+//     getInitialState() {
+//         return {
+//             getContactDetail: false
+//         }
+
+//     getContactDetail()
+
+//     }
+// })
+"use strict";
 "use strict";
 
-var ContactContainer = function ContactContainer(_ref) {
-    var contactInfo = _ref.contactInfo;
+var ContactOverview = function ContactOverview(_ref) {
+    var person = _ref.person;
 
     return React.createElement(
         "div",
         null,
         React.createElement(
-            "div",
+            "h1",
             null,
-            contactInfo.first_name,
-            " : ",
-            contactInfo.last_name
+            person.first_name
+        ),
+        React.createElement(
+            "ul",
+            { className: "list-group list-group-flush" },
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "First Name: ",
+                person.first_name
+            ),
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "Last Name: ",
+                person.last_name
+            ),
+            React.createElement(
+                "li",
+                { className: "list-group-item" },
+                "Company: ",
+                person.company
+            )
+        ),
+        React.createElement(
+            "button",
+            { clasName: "btn btn-primary" },
+            "More Info"
         )
     );
 };
+"use strict";
+
+// const ContactContainer = ({ contactInfo } ) => {
+//     return (
+//         <div>
+//             <div className="card">
+//                 <ContactOverview person={contactInfo} />
+//             </div>
+//         </div>
+//     );
+// };
+
+var ContactContainer = React.createClass({
+    displayName: "ContactContainer",
+    getInitialState: function getInitialState(props) {
+        return {
+            contact: this.props.contactInfo
+        };
+    },
+    render: function render() {
+        return React.createElement(
+            "div",
+            null,
+            React.createElement(
+                "div",
+                { className: "card" },
+                React.createElement(ContactOverview, { person: this.state.contact })
+            )
+        );
+    }
+});
 'use strict';
 
 ReactDOM.render(React.createElement(AppComponent, null), document.getElementById('content'));

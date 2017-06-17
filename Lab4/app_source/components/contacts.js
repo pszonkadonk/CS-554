@@ -46,7 +46,7 @@ const ContactListContainer = React.createClass({
             this.setState({error: "No comment provided"});
             return;
         }
-        let contactList = this.state.contats;
+        let contactList = this.state.contatcs;
 
         this.addContact(newContact).then(
             newContactObject => {
@@ -63,11 +63,9 @@ const ContactListContainer = React.createClass({
     render() {
         return (
             <div>
-                <ContactList contacts={this.state.contacts} />
-                
-
-
-
+                {this.state.contacts.map((info) => {
+                    return <ContactContainer contactInfo={info} />
+                })}
             </div>
         );
     }
