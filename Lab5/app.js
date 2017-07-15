@@ -1,0 +1,30 @@
+const bluebird = require("bluebird");
+const express = require('express');
+const app = express();
+const redis = require('redis');
+const client = redis.createClient();
+
+bluebird.promisifyAll(redis.RedisClient.prototype);
+bluebird.promisifyAll(redis.Multi.prototype);
+
+
+
+
+
+const static = express.static(__dirname + "/public")
+
+const configRoutes = require('./routes');
+
+app.use('/public', static);
+
+configRoutes(app)
+
+
+
+
+
+
+app.listen(3000, () => {
+    console.log("Serving on port 3000...");
+})
+
