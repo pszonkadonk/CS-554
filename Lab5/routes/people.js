@@ -5,36 +5,52 @@ const bluebird = require('bluebird');
 const people = data.people;
 const redis = require('redis');
 const client = redis.createClient();
+const flat = require('flat');
+const unflatten = flat.unflatten;
+
 
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
 
-router.get('/history', (req, res) => {
-
-    for(var i = 0; i < 20; i++) {
-        var allPeople = [];
-        client.get(i.toString, (err,person) => {
+router.get('/history', async (req, res) => {
+    let recentlyVisited = [];
+     client.keys("*", (err, allKeys) => {
+         console.log(allKeys)
+         client.mget(allKeys, redis.print);
+      })
+        .exec((err, replies) => {
+            console.log("hello from exec");
             if(err) {
-                throw(err);
+                console.log(err);
             }
-            console.log(person);
-            allPeople.push(person);
+            console.log(replies);
         });
-    }
-
-    res.send(allPeople);
-    // res.send("Your are in the history route");
 });
 
-router.get('/:id', (req, res) => {
-    client.get(req.params.id, (err, person) => {
-        // if(typeof(person) === null) {
-            people.getById(parseInt(req.params.id)).then((response) => {
-                client.set(response.id.toString, response);
-            });
-        // }
-    });
+ 
+router.get('/:id', async (req, res) => {
+    let person = await client.hgetallAsync(req.params.id)
+    let target = null
+    console.log(typeof(person));
+    if(person == null) {
+        console.log("Im working here");
+        try {
+            target = await people.getById(parseInt(req.params.id));
+            if(target) {
+                let flatPerson = flat(target);
+                let hmSetAsyncPerson = await client.hmsetAsync(target.id.toString(), flatPerson);
+                client.ltrim(20);
+                res.json(target);
+            }
+        } catch(err) {
+           res.send("Sorry, that person is not in the database")
+        }
+    } else {
+        let unflattenedPerson = unflatten(person);
+        client.ltrim(20);
+        res.send(unflattenedPerson);
+    }
 });
 
 module.exports = router;

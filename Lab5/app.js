@@ -8,18 +8,11 @@ bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
 
-
-
-
-const static = express.static(__dirname + "/public")
-
 const configRoutes = require('./routes');
 
-app.use('/public', static);
+app.use('/public', express.static(__dirname + "/public"));
 
 configRoutes(app)
-
-
 
 
 
@@ -27,4 +20,3 @@ configRoutes(app)
 app.listen(3000, () => {
     console.log("Serving on port 3000...");
 })
-

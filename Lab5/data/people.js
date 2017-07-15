@@ -1016,7 +1016,6 @@ let exportedMethods = {
                     }
                 }
                 if(targetPerson !== 'undefined') {
-                    console.log(targetPerson)
                     resolve(targetPerson)
                 }
                 else {

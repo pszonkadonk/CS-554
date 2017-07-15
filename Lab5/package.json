@@ -4,14 +4,22 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "debug": "./node_modules/.bin/babel-node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "./node_modules/.bin/babel-node app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel": "^6.23.0",
     "bluebird": "^3.5.0",
     "express": "^4.15.3",
+    "flat": "^2.0.1",
+    "node-redis": "^0.1.7",
     "redis": "^2.7.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1"
   }
 }
