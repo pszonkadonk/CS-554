@@ -31,22 +31,6 @@ router.get('/history', async (req, res) => {
     }
     res.send(recentHistory.reverse());
     recentHistory = [];
-    // let m = client.multi();
-    // client.keys("*", (err, allKeys) => {
-    //     if(allKeys.length <= 20) {
-    //         for(let i = 0; i < allKeys.length; i++){
-    //             m.hgetallAsync(allKeys[i]);
-    //         }
-    //     }
-    //     else {
-    //         for(let i = 0; i < 20; i++) {
-    //             m.hgetallAsync(allKeys[i]);
-    //         }
-    //     }
-    //     m.exec((err, result) => {
-    //         res.send(result);
-    //     });
-    // });
 });
 
  
