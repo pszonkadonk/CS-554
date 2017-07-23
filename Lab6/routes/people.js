@@ -26,6 +26,7 @@ router.get('/:id', async (req, res) => {
     let response = await nprSender.sendMessage(message);
     console.log(response);
 
+    
     if(response !== null) {
         res.send(response);
     } else {

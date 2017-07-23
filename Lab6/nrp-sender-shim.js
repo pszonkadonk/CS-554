@@ -19,8 +19,6 @@ const defaultMessageConfig = {
 const sendMessage = (messageConfig = defaultMessageConfig) => {
     return new Promise((fulfill, reject) => {
         let settings = Object.assign({}, defaultMessageConfig, messageConfig);
-
-        console.log(settings);
   
         let messageId = uuid.v4();
         let killswitchTimeoutId = undefined;
@@ -42,25 +40,20 @@ const sendMessage = (messageConfig = defaultMessageConfig) => {
             outgoingEventName = `${eventName}:delete:${messageId}`
         }
         
-        console.log("Event Name");
-        console.log(eventName);
-
         if (settings.expectsResponse) {
             let successEventName = `${eventName}:success:${messageId}`;
             let failedEventName = `${eventName}:failed:${messageId}`;
 
-            console.log('Sucess Event name');
-            console.log(successEventName);
-
             let success = redisConnection.on(successEventName, (response, channel) => {
-                console.log("success got called");
+                if(response.data === undefined || response.data === null) {
+                    fulfill("Not a valid request");
+                }
                 fulfill(response.data);
                 endMessageLifeCycle();
             });
 
             let error = redisConnection.on(failedEventName, (response, channel) => {
-                console.log("failure got called");
-                reject(response.data);
+                fulfill(response.data);
                 endMessageLifeCycle();
             });
 
