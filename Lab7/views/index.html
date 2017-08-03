@@ -10,14 +10,16 @@
         <div class="container">
             <div class="row">
                 <div class="col align-self-center" id="message-input">
-                    <h1>Please Submit.</h1>
-                        <form action="POST" id="message-form">
-                            <label for="">User</label>
-                                <input type="text">
-                            <label for="">Message</label>
-                                <input type="text">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </form>
+                    <h1>Lab 7</h1>
+                    <form action="POST" id="message-form">
+                        <label for="user">User</label>
+                            <input type="text" id="user" placeholder="User">
+                        <label for="message">Message</label>
+                            <input type="text" id="message" placeholder="Message">
+                        <label for="query">Search Query</label>
+                            <input type="text" id="query" placeholder="Search Query"><br />
+                        <button class="btn btn-primary" type="submit" id="submitButton">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -27,6 +29,8 @@
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+        <script src="js/messaging.js"></script>
         <script src="js/tota11y.min.js"></script>
     </body>
 </html>

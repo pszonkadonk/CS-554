@@ -17,7 +17,10 @@
     "flat": "^4.0.0",
     "node-redis": "^0.1.7",
     "node-redis-pubsub": "^1.0.3",
-    "redis": "^2.7.1"
+    "node-uuid": "^1.4.8",
+    "redis": "^2.7.1",
+    "request": "^2.81.0",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
